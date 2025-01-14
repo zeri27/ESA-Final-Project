@@ -13,6 +13,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 model = LinearRegression()
 model.fit(X_train, y_train)
 y_pred = model.predict(X_test)
+
 mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 
@@ -20,13 +21,13 @@ r2 = r2_score(y_test, y_pred)
 print("Model Coefficients:", model.coef_)
 print("Model Intercept:", model.intercept_)
 print("Mean Squared Error:", mse)
-print("R² Score:", r2)
+print("R^2 Score:", r2)
 
 ############### OUTPUT ####################
-# Model Coefficients: [0.82774832 4.0717688 ]
+# Model Coefficients: [0.82774832 4.0717688]
 # Model Intercept: 347.02394848073243
 # Mean Squared Error: 1254.5024693969015
-# R² Score: 0.1739134797817391
+# R^2 Score: 0.1739134797817391
 
 # Graphs
 plt.figure(figsize=(8, 6))
