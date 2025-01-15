@@ -14,9 +14,15 @@ temperature_data['Time'] = pd.to_datetime(temperature_data['Time'])
 merged_data = pd.merge(co2_data, humidity_data, on="Time", how="outer", suffixes=('_CO2', '_Humidity'))
 merged_data = pd.merge(merged_data, temperature_data, on="Time", how="outer")
 merged_data.rename(columns={"Value_CO2": "CO2_PPM", "Value_Humidity": "Humidity", "Value": "Temperature"}, inplace=True)
-merged_data['Date'] = merged_data['Time'].dt.date
-merged_data['Time'] = merged_data['Time'].dt.time
-merged_data = merged_data[['Date', 'Time', 'CO2_PPM', 'Humidity', 'Temperature']]
+merged_data['Year'] = merged_data['Time'].dt.year
+merged_data['Month'] = merged_data['Time'].dt.month
+merged_data['Day'] = merged_data['Time'].dt.day
+merged_data['Hour'] = merged_data['Time'].dt.hour
+merged_data['Minute'] = merged_data['Time'].dt.minute
+merged_data['DayOfWeek'] = merged_data['Time'].dt.dayofweek
+merged_data['DayOfYear'] = merged_data['Time'].dt.dayofyear
+merged_data['WeekOfYear'] = merged_data['Time'].dt.isocalendar().week
+merged_data = merged_data[['Year', 'Month', 'Day', 'Hour', 'Minute', 'DayOfWeek', 'DayOfYear', 'WeekOfYear', 'CO2_PPM', 'Humidity', 'Temperature']]
 
 # print(merged_data.head())
 # print(merged_data.shape[0])
